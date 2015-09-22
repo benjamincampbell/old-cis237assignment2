@@ -33,7 +33,7 @@ namespace cis237assignment2
         /// Feel free to change the return type, or add more parameters if you like, but it can be done
         /// exactly as it is here without adding anything other than code in the body.
         /// </summary>
-        public void SolveMaze(char[,] maze, int xStart, int yStart)
+        public char[,] SolveMaze(char[,] maze, int xStart, int yStart)
         {
             //Assign passed in variables to the class level ones. It was not done in the constuctor so that
             //a new maze could be passed in to this solve method without having to create a new instance.
@@ -41,8 +41,13 @@ namespace cis237assignment2
             this.maze = maze;
             this.xStart = xStart;
             this.yStart = yStart;
+            char[,] solvedMaze = new char[maze.GetLength(0), maze.GetLength(0)];
 
             //Do work needed to use mazeTraversal recursive call and solve the maze.
+
+            mazeTraversal();
+
+            return solvedMaze;
         }
 
 
@@ -54,6 +59,8 @@ namespace cis237assignment2
         private void mazeTraversal()
         {
             //Implement maze traversal recursive call
+
+
         }
     }
 }
