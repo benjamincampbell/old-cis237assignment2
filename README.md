@@ -12,7 +12,7 @@ You are required to use recursion to solve this problem.
 
 Please remember to fill out this README file with the relevent information that is missing.
 
-Also make sure that you commment your name at the top of each file, and add comments for each method.
+Also make sure that you comment your name at the top of each file, and add comments for each method.
 
 Comment anything else that isn't obvious about what you are trying to do in the code.
 
