@@ -20,12 +20,13 @@ namespace cis237assignment2
         char[,] maze;
         int xStart;
         int yStart;
+        bool solved = false;
 
         /// <summary>
         /// Default Constuctor to setup a new maze solver.
         /// </summary>
         public MazeSolver()
-        {}
+        { }
 
 
         /// <summary>
@@ -41,25 +42,108 @@ namespace cis237assignment2
             this.maze = maze;
             this.xStart = xStart;
             this.yStart = yStart;
-            char[,] solvedMaze = new char[maze.GetLength(0), maze.GetLength(0)];
 
             //Do work needed to use mazeTraversal recursive call and solve the maze.
 
-            mazeTraversal();
+                mazeTraversal(maze, yStart, xStart);
 
-            return solvedMaze;
+            return maze;
         }
-
 
         /// <summary>
         /// This should be the recursive method that gets called to solve the maze.
         /// Feel free to change the return type if you like, or pass in parameters that you might need.
         /// This is only a very small starting point.
         /// </summary>
-        private void mazeTraversal()
+        private void mazeTraversal(char[,] maze, int ycoord, int xcoord)
         {
-            //Implement maze traversal recursive call
+            try
+            {
+                //Implement maze traversal recursive call
+                int up = ycoord - 1;
+                int down = ycoord + 1;
+                int left = xcoord - 1;
+                int right = xcoord + 1;
 
+                //If solved gets flipped to true, exit the while loops
+
+                if (maze[down, xcoord] == '.')
+                {   //First we check down to see if the path is open
+                    maze[ycoord, xcoord] = 'O'; //Set where we are as a O since we can progress from it
+                    mazeTraversal(maze, down, xcoord); //If this path leads us to the end, we never exit this, so....
+                    maze[down, xcoord] = 'X'; //If we get here, we didn't solve it on that path. Overwrite O back to X
+                }
+                //else
+                //{
+                //    if (maze[down, xcoord] == '#')
+                //    {
+                //        maze[ycoord, xcoord] = 'X';
+                //    }
+                //    else
+                //    {
+
+                //    }
+                //}
+
+                if (maze[ycoord, left] == '.')
+                {   //Look left
+                    maze[ycoord, xcoord] = 'O';
+                    mazeTraversal(maze, ycoord, left);
+                    maze[ycoord, left] = 'X';
+                }
+                //else
+                //{
+                //    if (maze[ycoord, left] == '#')
+                //    {
+                //        maze[ycoord, xcoord] = 'X';
+                //    }
+                //    else
+                //    {
+
+                //    }
+                //}
+
+                if (maze[up, xcoord] == '.')
+                {   //Look up
+                    maze[ycoord, xcoord] = 'O';
+                    mazeTraversal(maze, up, xcoord);
+                    maze[up, xcoord] = 'X';
+                }
+                //else
+                //{
+                //    if (maze[up, xcoord] == '#')
+                //    {
+                //        maze[ycoord, xcoord] = 'X';
+                //    }
+                //    else
+                //    {
+
+                //    }
+                //}
+
+                if (maze[ycoord, right] == '.')
+                {   //Look right
+                    maze[ycoord, xcoord] = 'O';
+                    mazeTraversal(maze, ycoord, right);
+                    maze[ycoord, right] = 'X';
+                }
+                //else
+                //{
+                //    if (maze[ycoord, right] == '#')
+                //    {
+                //        maze[ycoord, xcoord] = 'X';
+                //    }
+                //    else
+                //    {
+
+                //    }
+                //}
+            }
+
+            catch (IndexOutOfRangeException)
+            {
+                solved = true;
+            }
 
         }
     }
