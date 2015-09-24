@@ -44,7 +44,7 @@ namespace cis237assignment2
             this.yStart = yStart;
 
             //Do work needed to use mazeTraversal recursive call and solve the maze.
-
+            
                 mazeTraversal(maze, yStart, xStart);
 
             return maze;
@@ -64,8 +64,6 @@ namespace cis237assignment2
                 int down = ycoord + 1;
                 int left = xcoord - 1;
                 int right = xcoord + 1;
-
-                //If solved gets flipped to true, exit the while loops
 
                 if (maze[down, xcoord] == '.')
                 {   //First we check down to see if the path is open
@@ -142,7 +140,7 @@ namespace cis237assignment2
 
             catch (IndexOutOfRangeException)
             {
-                solved = true;
+                solved = true; //Check to see if index is 12, then true, no try/catch
             }
 
         }
