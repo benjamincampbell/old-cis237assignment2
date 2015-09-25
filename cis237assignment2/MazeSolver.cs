@@ -44,8 +44,10 @@ namespace cis237assignment2
             this.yStart = yStart;
 
             //Do work needed to use mazeTraversal recursive call and solve the maze.
-            
-                mazeTraversal(maze, yStart, xStart);
+
+            mazeTraversal(maze, yStart, xStart);
+
+            solved = false;
 
             return maze;
         }
@@ -55,7 +57,7 @@ namespace cis237assignment2
         /// Feel free to change the return type if you like, or pass in parameters that you might need.
         /// This is only a very small starting point.
         /// </summary>
-        private void mazeTraversal(char[,] maze, int ycoord, int xcoord)
+        private bool mazeTraversal(char[,] maze, int ycoord, int xcoord)
         {
             try
             {
@@ -65,11 +67,16 @@ namespace cis237assignment2
                 int left = xcoord - 1;
                 int right = xcoord + 1;
 
+                maze[ycoord, xcoord] = 'O';
+
                 if (maze[down, xcoord] == '.')
                 {   //First we check down to see if the path is open
                     maze[ycoord, xcoord] = 'O'; //Set where we are as a O since we can progress from it
                     mazeTraversal(maze, down, xcoord); //If this path leads us to the end, we never exit this, so....
-                    maze[down, xcoord] = 'X'; //If we get here, we didn't solve it on that path. Overwrite O back to X
+                    if (!solved)
+                    {
+                        maze[down, xcoord] = 'X'; //If we get here, we didn't solve it on that path. Overwrite O back to X
+                    }
                 }
                 //else
                 //{
@@ -87,7 +94,10 @@ namespace cis237assignment2
                 {   //Look left
                     maze[ycoord, xcoord] = 'O';
                     mazeTraversal(maze, ycoord, left);
-                    maze[ycoord, left] = 'X';
+                    if (!solved)
+                    {
+                        maze[ycoord, left] = 'X';
+                    }
                 }
                 //else
                 //{
@@ -105,7 +115,10 @@ namespace cis237assignment2
                 {   //Look up
                     maze[ycoord, xcoord] = 'O';
                     mazeTraversal(maze, up, xcoord);
-                    maze[up, xcoord] = 'X';
+                    if (!solved)
+                    {
+                        maze[up, xcoord] = 'X';
+                    }
                 }
                 //else
                 //{
@@ -123,7 +136,10 @@ namespace cis237assignment2
                 {   //Look right
                     maze[ycoord, xcoord] = 'O';
                     mazeTraversal(maze, ycoord, right);
-                    maze[ycoord, right] = 'X';
+                    if (!solved)
+                    {
+                        maze[ycoord, right] = 'X';
+                    }
                 }
                 //else
                 //{
@@ -142,6 +158,8 @@ namespace cis237assignment2
             {
                 solved = true; //Check to see if index is 12, then true, no try/catch
             }
+
+            return false;
 
         }
     }

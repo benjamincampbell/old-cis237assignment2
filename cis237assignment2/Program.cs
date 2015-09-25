@@ -41,23 +41,16 @@ namespace cis237assignment2
               { '#', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.', '#' },
               { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' } };
 
-            /// <summary>
-            /// Create a new instance of a mazeSolver.
-            /// </summary>
             MazeSolver mazeSolver = new MazeSolver();
 
-            showMaze(maze1);
-            char[,] maze2 = transposeMaze(maze1);
+            showMaze(maze1); //Show base maze
 
-            /// <summary>
-            /// Tell the instance to solve the first maze with the passed maze, and start coordinates.
-            /// </summary>
-            char [,] maze1Solved = (mazeSolver.SolveMaze(maze1, Y_START, X_START));
+            char [,] maze1Solved = mazeSolver.SolveMaze(maze1, Y_START, X_START); //pass maze1 into the solver object, it returns the solved maze we save as maze1Solved
 
-            showMaze(maze1Solved);
+            showMaze(maze1Solved); //Show the solved maze1Solved
 
-            //Create the second maze by transposing the first maze
-
+            //Create the second maze by transposing the first maze, and show it
+            char[,] maze2 = transposeMaze(maze1); 
             showMaze(maze2);
 
             //Solve the transposed maze.
