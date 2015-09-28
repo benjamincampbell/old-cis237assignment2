@@ -17,7 +17,7 @@ namespace cis237assignment2
         /// <summary>
         /// Class level memeber variable for the mazesolver class
         /// </summary>
-        char[,] maze;
+        char[,] mazeToSolve;
         int xStart;
         int yStart;
         bool solved = false;
@@ -39,13 +39,13 @@ namespace cis237assignment2
             //Assign passed in variables to the class level ones. It was not done in the constuctor so that
             //a new maze could be passed in to this solve method without having to create a new instance.
             //The variables are assigned so they can be used anywhere they are needed within this class. 
-            this.maze = maze;
+            this.mazeToSolve = maze;
             this.xStart = xStart;
             this.yStart = yStart;
 
             //Do work needed to use mazeTraversal recursive call and solve the maze.
 
-            mazeTraversal(maze, yStart, xStart);
+            mazeTraversal(yStart, xStart);
 
             solved = false;
 
@@ -57,7 +57,7 @@ namespace cis237assignment2
         /// Feel free to change the return type if you like, or pass in parameters that you might need.
         /// This is only a very small starting point.
         /// </summary>
-        private bool mazeTraversal(char[,] maze, int ycoord, int xcoord)
+        private bool mazeTraversal(int ycoord, int xcoord)
         {
             try
             {
@@ -67,91 +67,47 @@ namespace cis237assignment2
                 int left = xcoord - 1;
                 int right = xcoord + 1;
 
-                maze[ycoord, xcoord] = 'O';
+                mazeToSolve[ycoord, xcoord] = 'O';
 
-                if (maze[down, xcoord] == '.')
+                if (mazeToSolve[down, xcoord] == '.')
                 {   //First we check down to see if the path is open
-                    maze[ycoord, xcoord] = 'O'; //Set where we are as a O since we can progress from it
-                    mazeTraversal(maze, down, xcoord); //If this path leads us to the end, we never exit this, so....
+                    mazeToSolve[ycoord, xcoord] = 'O'; //Set where we are as a O since we can progress from it
+                    mazeTraversal(down, xcoord); //If this path leads us to the end, we never exit this, so....
                     if (!solved)
                     {
-                        maze[down, xcoord] = 'X'; //If we get here, we didn't solve it on that path. Overwrite O back to X
+                        mazeToSolve[down, xcoord] = 'X'; //If we get here, we didn't solve it on that path. Overwrite O back to X
                     }
                 }
-                //else
-                //{
-                //    if (maze[down, xcoord] == '#')
-                //    {
-                //        maze[ycoord, xcoord] = 'X';
-                //    }
-                //    else
-                //    {
 
-                //    }
-                //}
-
-                if (maze[ycoord, left] == '.')
+                if (mazeToSolve[ycoord, left] == '.')
                 {   //Look left
-                    maze[ycoord, xcoord] = 'O';
-                    mazeTraversal(maze, ycoord, left);
+                    mazeToSolve[ycoord, xcoord] = 'O';
+                    mazeTraversal(ycoord, left);
                     if (!solved)
                     {
-                        maze[ycoord, left] = 'X';
+                        mazeToSolve[ycoord, left] = 'X';
                     }
                 }
-                //else
-                //{
-                //    if (maze[ycoord, left] == '#')
-                //    {
-                //        maze[ycoord, xcoord] = 'X';
-                //    }
-                //    else
-                //    {
 
-                //    }
-                //}
-
-                if (maze[up, xcoord] == '.')
+                if (mazeToSolve[up, xcoord] == '.')
                 {   //Look up
-                    maze[ycoord, xcoord] = 'O';
-                    mazeTraversal(maze, up, xcoord);
+                    mazeToSolve[ycoord, xcoord] = 'O';
+                    mazeTraversal(up, xcoord);
                     if (!solved)
                     {
-                        maze[up, xcoord] = 'X';
+                        mazeToSolve[up, xcoord] = 'X';
                     }
                 }
-                //else
-                //{
-                //    if (maze[up, xcoord] == '#')
-                //    {
-                //        maze[ycoord, xcoord] = 'X';
-                //    }
-                //    else
-                //    {
 
-                //    }
-                //}
-
-                if (maze[ycoord, right] == '.')
+                if (mazeToSolve[ycoord, right] == '.')
                 {   //Look right
-                    maze[ycoord, xcoord] = 'O';
-                    mazeTraversal(maze, ycoord, right);
+                    mazeToSolve[ycoord, xcoord] = 'O';
+                    mazeTraversal(ycoord, right);
                     if (!solved)
                     {
-                        maze[ycoord, right] = 'X';
+                        mazeToSolve[ycoord, right] = 'X';
                     }
                 }
-                //else
-                //{
-                //    if (maze[ycoord, right] == '#')
-                //    {
-                //        maze[ycoord, xcoord] = 'X';
-                //    }
-                //    else
-                //    {
-
-                //    }
-                //}
             }
 
             catch (IndexOutOfRangeException)
