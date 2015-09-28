@@ -45,7 +45,7 @@ namespace cis237assignment2
 
             showMaze(maze1); //Show base maze
 
-            char [,] maze1Solved = mazeSolver.SolveMaze(maze1, Y_START, X_START); //pass maze1 into the solver object, it returns the solved maze we save as maze1Solved
+            char[,] maze1Solved = mazeSolver.SolveMaze(maze1, Y_START, X_START); //pass maze1 into the solver object, it returns the solved maze we save as maze1Solved
             showMaze(maze1Solved); //Show the solved maze1Solved
 
             //Create the second maze by transposing the first maze, and show it
