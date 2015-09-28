@@ -46,16 +46,14 @@ namespace cis237assignment2
             showMaze(maze1); //Show base maze
 
             char [,] maze1Solved = mazeSolver.SolveMaze(maze1, Y_START, X_START); //pass maze1 into the solver object, it returns the solved maze we save as maze1Solved
-
             showMaze(maze1Solved); //Show the solved maze1Solved
 
             //Create the second maze by transposing the first maze, and show it
             char[,] maze2 = transposeMaze(maze1); 
-            showMaze(maze2);
+            showMaze(maze2); //Show the (should be) blank maze2
 
             //Solve the transposed maze.
             char[,] maze2Solved = (mazeSolver.SolveMaze(maze2, Y_START, X_START));
-
             showMaze(maze2Solved);
 
         }
@@ -79,11 +77,11 @@ namespace cis237assignment2
         static char[,] transposeMaze(char[,] mazeToTranspose)
         {
             //Write code here to create a transposed maze.
-            char[,] transposedMaze = new char[mazeToTranspose.GetLength(0), mazeToTranspose.GetLength(0)];
+            char[,] transposedMaze = new char[mazeToTranspose.GetLength(0), mazeToTranspose.GetLength(1)];
 
             for (int y = 0; y < mazeToTranspose.GetLength(0); y++)
             {   //Go through the rows
-                for (int x = 0; x < mazeToTranspose.GetLength(0); x++)
+                for (int x = 0; x < mazeToTranspose.GetLength(1); x++)
                 {   //Go through the columns
                     transposedMaze[y, x] = mazeToTranspose[x, y];
                 }
@@ -96,7 +94,7 @@ namespace cis237assignment2
         {   //Method to show the array passed to the method
             for (int y = 0; y < mazeToShow.GetLength(0); y++)
             {
-                for (int x = 0; x < mazeToShow.GetLength(0); x++)
+                for (int x = 0; x < mazeToShow.GetLength(1); x++)
                 {
                     Console.Write(mazeToShow[y, x] + " ");
 

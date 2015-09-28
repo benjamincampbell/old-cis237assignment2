@@ -17,7 +17,7 @@ namespace cis237assignment2
         /// <summary>
         /// Class level memeber variable for the mazesolver class
         /// </summary>
-        char[,] mazeToSolve;
+        private char[,] mazeToSolve;
         int xStart;
         int yStart;
         bool solved = false;
@@ -49,7 +49,7 @@ namespace cis237assignment2
 
             solved = false;
 
-            return maze;
+            return mazeToSolve;
         }
 
         /// <summary>
