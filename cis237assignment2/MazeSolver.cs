@@ -44,10 +44,13 @@ namespace cis237assignment2
             this.yStart = yStart;
 
             //Do work needed to use mazeTraversal recursive call and solve the maze.
-
-            mazeTraversal(yStart, xStart);
-
             solved = false;
+
+            while (!solved)
+            {
+                mazeTraversal(yStart, xStart);
+            }
+
 
             return mazeToSolve;
         }
@@ -57,55 +60,60 @@ namespace cis237assignment2
         /// Feel free to change the return type if you like, or pass in parameters that you might need.
         /// This is only a very small starting point.
         /// </summary>
-        private bool mazeTraversal(int ycoord, int xcoord)
+        private void mazeTraversal(int xcoord, int ycoord)
         {
             try
             {
                 //Implement maze traversal recursive call
-                int up = ycoord - 1;
-                int down = ycoord + 1;
-                int left = xcoord - 1;
-                int right = xcoord + 1;
+                int up = xcoord - 1;
+                int down = xcoord + 1;
+                int left = ycoord - 1;
+                int right = ycoord + 1;
 
-                mazeToSolve[ycoord, xcoord] = 'O';
+                mazeToSolve[xcoord, ycoord] = 'O';
 
-                if (mazeToSolve[down, xcoord] == '.')
+                //if (up < 0 || down == mazeToSolve.GetLength(0) || left < 0 || right == mazeToSolve.GetLength(1))
+                //{   //This method checks to see if and direction is going to take us out of the array, to prevent an IndexOutOfRange Exception
+                //    solved = true;
+                //}
+
+                if (mazeToSolve[down, ycoord] == '.' && !solved)
                 {   //First we check down to see if the path is open
-                    mazeToSolve[ycoord, xcoord] = 'O'; //Set where we are as a O since we can progress from it
-                    mazeTraversal(down, xcoord); //If this path leads us to the end, we never exit this, so....
+                    mazeToSolve[xcoord, ycoord] = 'O'; //Set where we are as a O since we can progress from it
+                    mazeTraversal(down, ycoord); //If this path leads us to the end, we never exit this, so....
                     if (!solved)
                     {
-                        mazeToSolve[down, xcoord] = 'X'; //If we get here, we didn't solve it on that path. Overwrite O back to X
+                        mazeToSolve[down, ycoord] = 'X'; //If we get here, we didn't solve it on that path. Overwrite O back to X
                     }
                 }
 
-                if (mazeToSolve[ycoord, left] == '.')
+                if (mazeToSolve[xcoord, left] == '.' && !solved)
                 {   //Look left
-                    mazeToSolve[ycoord, xcoord] = 'O';
-                    mazeTraversal(ycoord, left);
+                    mazeToSolve[xcoord, ycoord] = 'O';
+                    mazeTraversal(xcoord, left);
                     if (!solved)
                     {
-                        mazeToSolve[ycoord, left] = 'X';
+                        mazeToSolve[xcoord, left] = 'X';
                     }
                 }
 
-                if (mazeToSolve[up, xcoord] == '.')
+                if (mazeToSolve[up, ycoord] == '.' && !solved)
                 {   //Look up
-                    mazeToSolve[ycoord, xcoord] = 'O';
-                    mazeTraversal(up, xcoord);
+                    mazeToSolve[xcoord, ycoord] = 'O';
+                    mazeTraversal(up, ycoord);
                     if (!solved)
                     {
-                        mazeToSolve[up, xcoord] = 'X';
+                        mazeToSolve[up, ycoord] = 'X';
                     }
                 }
 
-                if (mazeToSolve[ycoord, right] == '.')
+                if (mazeToSolve[xcoord, right] == '.' && !solved)
                 {   //Look right
-                    mazeToSolve[ycoord, xcoord] = 'O';
-                    mazeTraversal(ycoord, right);
+                    mazeToSolve[xcoord, ycoord] = 'O';
+                    mazeTraversal(xcoord, right);
                     if (!solved)
                     {
-                        mazeToSolve[ycoord, right] = 'X';
+                        mazeToSolve[xcoord, right] = 'X';
                     }
                 }
             }
@@ -114,8 +122,6 @@ namespace cis237assignment2
             {
                 solved = true; //Check to see if index is 12, then true, no try/catch
             }
-
-            return false;
 
         }
     }
