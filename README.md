@@ -30,4 +30,6 @@ Don't forget that you must have a base case for your recursive method or you wil
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
+I couldn't get the maze solver to work without using the try/catch, which I know is not very good practice (since I should be avoiding errors in the first place)
+
 
