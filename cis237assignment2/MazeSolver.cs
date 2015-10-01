@@ -75,42 +75,39 @@ namespace cis237assignment2
                 //{   //This method checks to see if and direction is going to take us out of the array, to prevent an IndexOutOfRange Exception
                 //    solved = true;
                 //}
-                if (!solved)
-                {   //Make sure the maze isn't solved first, otherwise this is all unnecessary
-                    if (mazeToSolve[down, ycoord] == '.')
-                    {   //First we check down to see if the path is open, if so, we go to it
-                        mazeTraversal(down, ycoord); //If this path leads us to the end, we never exit this, so....
-                        if (!solved)
-                        {
-                            mazeToSolve[down, ycoord] = 'X'; //If we get here, we didn't solve it on that path. Overwrite O back to X
-                        }
+                if (mazeToSolve[down, ycoord] == '.' && !solved)
+                {   //First we check down to see if the path is open, if so, we go to it
+                    mazeTraversal(down, ycoord); //If this path leads us to the end, we never exit this, so....
+                    if (!solved)
+                    {
+                        mazeToSolve[down, ycoord] = 'X'; //If we get here, we didn't solve it on that path. Overwrite O back to X
                     }
+                }
 
-                    if (mazeToSolve[xcoord, left] == '.')
-                    {   //Look left
-                        mazeTraversal(xcoord, left);
-                        if (!solved)
-                        {
-                            mazeToSolve[xcoord, left] = 'X';
-                        }
+                if (mazeToSolve[xcoord, left] == '.' && !solved)
+                {   //Look left
+                    mazeTraversal(xcoord, left);
+                    if (!solved)
+                    {
+                        mazeToSolve[xcoord, left] = 'X';
                     }
+                }
 
-                    if (mazeToSolve[up, ycoord] == '.')
-                    {   //Look up
-                        mazeTraversal(up, ycoord);
-                        if (!solved)
-                        {
-                            mazeToSolve[up, ycoord] = 'X';
-                        }
+                if (mazeToSolve[up, ycoord] == '.' && !solved)
+                {   //Look up
+                    mazeTraversal(up, ycoord);
+                    if (!solved)
+                    {
+                        mazeToSolve[up, ycoord] = 'X';
                     }
+                }
 
-                    if (mazeToSolve[xcoord, right] == '.')
-                    {   //Look right
-                        mazeTraversal(xcoord, right);
-                        if (!solved)
-                        {
-                            mazeToSolve[xcoord, right] = 'X';
-                        }
+                if (mazeToSolve[xcoord, right] == '.' && !solved)
+                {   //Look right
+                    mazeTraversal(xcoord, right);
+                    if (!solved)
+                    {
+                        mazeToSolve[xcoord, right] = 'X';
                     }
                 }
             }
