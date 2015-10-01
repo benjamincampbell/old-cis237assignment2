@@ -32,4 +32,6 @@ Don't forget that you must have a base case for your recursive method or you wil
 
 I couldn't get the maze solver to work without using the try/catch, which I know is not very good practice (since I should be avoiding errors in the first place)
 
+Also in MazeSolver.cs, in the mazeTraversal() method, every time I check a direction I check if (direction == '.' && !solved). I tried envoloping all 4 of these within 1 if (!solved) to save redundancy, but when it would come out of the recursive calls it would then check other directions since it never was forced to see if the maze was solved yet. Doing this makes it so it stops checking any directions after the maze is solved.
+
 
